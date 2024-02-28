@@ -68,7 +68,7 @@ def perform_case_sensitive_search(requested_pattern, path,options):
         if(initialPos>=0 and "-i" not in options):
             finalPos = initialPos+len(requested_pattern)
             if("-w" in options):
-                if(line[initialPos-1]==" " and (line[finalPos]==" " or line[finalPos]==".")):
+                if((line[initialPos-1]==" " or initialPos==0) and (line[finalPos]==" " or line[finalPos]==".")):
                     if("-n" in options): resultsFound+=1
                     else: doPrinting(line,initialPos,finalPos,lines.index(line))
             else:
@@ -109,7 +109,7 @@ def perform_insensitive_search(requested_pattern, path,options):
 
         if(pos[0]>=0 and "-i" not in options):
             if("-w" in options):
-                if(line[pos[0]-1]==" " and (line[pos[1]]==" " or line[pos[1]]==".")):
+                if((line[pos[0]-1]==" " or pos[0]==0) and (line[pos[1]]==" " or line[pos[1]]==".")):
                     if("-n" in options): resultsFound+=1
                     else: doPrinting(line,pos[0],pos[1],lines.index(line))
             else:
@@ -129,11 +129,12 @@ def perform_deep_search(requested_pattern,flags,DIR):
     Task: Create a list of all the files in the directory and sub directory and get the 
     Output: Give the output by calling respective search option according to the flags
     '''
-    file_names = []
+    list_of_files_path = []
     for root,d_names,file_names in os.walk(DIR):
-        for f in file_names:
-            file_names.append(os.path.join(root,f))
-    for file_name in file_names:
+        for name in file_names:
+            list_of_files_path.append(os.path.join(root,name))
+
+    for file_name in list_of_files_path:
         trigger_search(requested_pattern,file_name,flags)
 
 def trigger_search(requested_pattern, path, flags):
