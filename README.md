@@ -44,5 +44,7 @@ This will search for lines that **don't** contain the word "error" in the file `
 
 - The `m` flag currently doesn't support wildcards within subdirectories.
 - For large files, performance might be slower due to loading the entire file into memory.
+### **Screenshot:**
+![Screenshot 2024-02-28 192211](https://github.com/PShubhra/grep-sim/assets/143318095/91ab5dc0-becc-4d93-87a7-e2878c06a900)
 
-I hope this readme helps! Feel free to use and modify this script for your needs.
+I hope this readme helps.
